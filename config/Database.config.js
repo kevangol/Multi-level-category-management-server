@@ -7,8 +7,6 @@ const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGODB_URL, {
             dbName: process.env.DB_NAME,
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
         });
         console.log(`✅ Connected to MongoDB: ${process.env.DB_NAME}`);
     } catch (error) {
@@ -17,4 +15,4 @@ const connectDB = async () => {
     }
 };
 
-module.exports = connectDB
+module.exports = connectDB;
