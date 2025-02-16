@@ -17,6 +17,12 @@ const loginUser = async (email, password) => {
     return user;
 };
 
+const getUserById = async (userId) => {
+    const user = await User.findById(userId).select('-password'); // Excluding password for security
+    if (!user) throw new Error('User not found');
+    return user;
+};
+
 module.exports = {
-    registerUser, loginUser
+    registerUser, loginUser, getUserById
 }

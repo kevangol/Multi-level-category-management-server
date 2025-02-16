@@ -14,7 +14,7 @@ const getCategoriesTree = async () => {
                 startWith: "$_id",
                 connectFromField: "_id",
                 connectToField: "parent",
-                as: "children"
+                as: "children",
             }
         },
         { $match: { parent: null } }

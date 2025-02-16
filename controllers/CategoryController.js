@@ -29,7 +29,7 @@ const updateCategory = async (req, res) => {
 
         const { name, isActive, parent } = req.body;
 
-        if (!name || isActive === undefined || parent === undefined) {
+        if (!(name || isActive === undefined || parent === undefined)) {
             return res.handler.badRequest("Missing required fields: name, isActive, or parent.");
         }
 

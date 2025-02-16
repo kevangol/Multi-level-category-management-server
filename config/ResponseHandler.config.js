@@ -114,9 +114,10 @@ class ResponseHandler {
 
     // 5XX SERVER ERROR
     serverError(error) {
+        console.log("--->", error)
         this.sender(
             STATUS_CODES.SERVER_ERROR,
-            "Internal server error",
+            error || "Internal server error",
             undefined,
             error
         );
