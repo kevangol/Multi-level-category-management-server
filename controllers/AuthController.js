@@ -6,9 +6,9 @@ const signup = async (req, res) => {
         const { name, email, password } = req.body;
         const user = await registerUser(name, email, password);
         generateToken(res, user._id);
-        res.status(201).json({ message: 'User registered successfully' });
+        return res.handler.success("User registered successfully")
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        return res.handler.serverError();
     }
 };
 
@@ -17,15 +17,15 @@ const signin = async (req, res) => {
         const { email, password } = req.body;
         const user = await loginUser(email, password);
         generateToken(res, user._id);
-        res.status(200).json({ message: 'Login successful' });
+        return res.handler.success("Login successfully", user)
     } catch (error) {
-        res.status(401).json({ message: error.message });
+        return res.handler.serverError()
     }
 };
 
 const logout = (req, res) => {
     res.clearCookie('jwt');
-    res.status(200).json({ message: 'Logged out successfully' });
+    return res.handler.success("Logout successfully")
 };
 
 module.exports = {

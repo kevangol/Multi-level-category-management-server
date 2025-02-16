@@ -5,7 +5,7 @@ const protect = async (req, res, next) => {
     const token = req.cookies.jwt;
 
     if (!token) {
-        return res.status(401).json({ message: 'Not authorized' });
+        return res.handler.unauthorized("Unauthorized access. Please log in to continue.");
     }
 
     try {
@@ -13,7 +13,7 @@ const protect = async (req, res, next) => {
         req.user = await User.findById(decoded.userId).select('-password');
         next();
     } catch (error) {
-        res.status(401).json({ message: 'Token invalid' });
+        return res.handler.unauthorized("Unauthorized access. Please log in to continue.");
     }
 };
 
