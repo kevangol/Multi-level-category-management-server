@@ -1,12 +1,10 @@
-const express = require('express');
+const express = require("express");
+const router = express.Router();
+const categoryController = require("../controllers/CategoryController.js");
 
-const categoryRouter = express.Router();
+router.post("/category", categoryController.createCategory);
+router.get("/category", categoryController.getCategoriesTree);
+router.put("/category/:id", categoryController.updateCategory);
+router.delete("/category/:id", categoryController.deleteCategory);
 
-categoryRouter.post('/signup', signup);
-categoryRouter.post('/signin', signin);
-categoryRouter.post('/logout', logout);
-categoryRouter.get('/profile', protect, (req, res) => {
-    res.json(req.user);
-});
-
-module.exports = categoryRouter;
+module.exports = router;
