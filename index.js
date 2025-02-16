@@ -106,7 +106,7 @@ app.use((err, req, res, next) => {
 // ✅ **Start Server**
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => logger.info(`🚀 Server running securely on port ${PORT}`));
-module.exports = { app, server }
+app.listen(PORT, () => logger.info(`🚀 Server running securely on port ${PORT}`));
+// module.exports = { app }
 
 
